@@ -85,7 +85,8 @@ while True:
             for y in range(len(result)):
                 for x in range(len(result)):
                     if grid_text[y][x]=="0":
-                        cv2.putText(bg,"{:d}".format(result[y][x]),((x)*box+margin+3,(y+1)*box-margin-3),cv2.FONT_HERSHEY_SCRIPT_COMPLEX,0.9,(0,0,255),1)
+                        cv2.putText(bg,"{:d}".format(result[y][x]),((x)*box+margin+3,(y+1)*box-margin-3),
+                                    cv2.FONT_HERSHEY_SCRIPT_COMPLEX,0.9,(0,0,255),1)
             M = cv2.getPerspectiveTransform(pts2,pts1)
             h,w,c = frame.shape
             bgP = cv2.warpPerspective(bg, M ,(w,h))
@@ -94,8 +95,8 @@ while True:
             mask=mask.astype('uint8')
             mask_inv = cv2.bitwise_not(mask)
             img1_bg = cv2.bitwise_and(frame,frame,mask=mask_inv)
-            img2_fg = cv2.bitwise_and(bgP,bgP,mask=mask).astype('uint8')
-            dst=cv2.add(img1_bg,img2_fg)
+            img2_bg = cv2.bitwise_and(bgP,bgP,mask=mask).astype('uint8')
+            dst=cv2.add(img1_bg,img2_bg)
             dst = cv2.resize(dst,(1080,620))
             cv2.imshow("frame", dst)
             out.write(dst)
