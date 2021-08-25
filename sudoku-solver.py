@@ -45,3 +45,25 @@ def sudoku(f):
         print("Sudoku contains: "+ str(nl+1) + "lines instead of 9.")
         return
     
+    for l in range(9):
+        if ec(s[l]):
+            print("Line "+ str(l+1) +"is contradictory.")
+            return
+    for c in range(9):
+        k = [s[l][c] for l in range(9)]
+        if ec(k):
+            print("The column" + str(c+1) + "is contradictory.")
+            return
+    for l in range(3):
+        for c in range(3):
+            q=[]
+            for i in range(3):
+                q+=s[l*3 +i][c*3:(c+1)*3]
+                if ec(q):
+                    print("The cell (" + str(l+1) + ";" + str(c+1)+ ") is contradictory.")
+                    return
+        
+    p =[[] for i in t]
+    cr =0
+
+    
