@@ -66,4 +66,17 @@ def sudoku(f):
     p =[[] for i in t]
     cr =0
 
-    
+    while cr< len(t):
+        p[cr]=cp(t[cr],s)
+        try:
+            while not p[cr]:
+                s[t[cr][0]][t[cr][1]]=0
+                cr-=1
+        except:
+            print("Sudoku has no solution.")
+            return
+        s[t[cr][0]][t[cr][1]] = p[cr].pop()
+        cr+=1
+
+    af(s)
+    return(s)    
