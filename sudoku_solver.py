@@ -8,7 +8,7 @@ def sudoku(f):
                     print("+",end="")
             print()
             if n in {2,5}:
-                print("+",*11)
+                print("+" *11)
     
     def cp(q,s):
         l=set(s[q[0]])

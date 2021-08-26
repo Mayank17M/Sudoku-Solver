@@ -13,7 +13,7 @@ grid_size = 9 * box
 vid = cv2.VideoCapture(0)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 flag = 0
-out = cv2.VideoWriter('output.avi', fourcc, 30.0, (1080, 620))
+out = cv2.VideoWriter('output.avi', fourcc, 30.0, (1280, 720))
 
 while True:
 
@@ -97,18 +97,18 @@ while True:
             img1_bg = cv2.bitwise_and(frame,frame,mask=mask_inv)
             img2_bg = cv2.bitwise_and(bgP,bgP,mask=mask).astype('uint8')
             dst=cv2.add(img1_bg,img2_bg)
-            dst = cv2.resize(dst,(1080,620))
+            dst = cv2.resize(dst,(1280,720))
             cv2.imshow("frame", dst)
             out.write(dst)
 
         else:
-            frame=cv2.resize(frame,(1080,620))
+            frame=cv2.resize(frame,(1280,720))
             cv2.imshow("frame",frame)
             out.write(frame)
     
     else:
         flag=0
-        frame = cv2.resize(frame,(1080,620))
+        frame = cv2.resize(frame,(1280,720))
         cv2.imshow("frame",frame)
         out.write(frame)
 
